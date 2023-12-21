@@ -1,0 +1,46 @@
+#allow running wmi from command line 
+
+Set-ExecutionPolicy RemoteSigned
+
+#check if wmi is enabled
+sc query winmgmt
+
+#start wmi service
+sc start winmgmt
+
+#check if the firewall blocks wmi
+netsh advfirewall firewall show rule name="windows management instrumentation (WMI-in)"
+
+#open remote wmi service in the firewall
+netsh advfirewall firewall set rule group="windows management instrumentation (wmi)" new enable=yes
+
+
+#Enable winrm. On the computer, you want to access.
+#Check if winrm is running or stopped:
+
+get-service winrm
+If it is stopped, type:
+
+enable-PSRemoting -force
+Add access permission to the remote host.
+
+winrm s winrm/config/client '@{TrustedHosts="REMOTECOMPUTERNAME/IP"}'
+So in my case:
+
+winrm s winrm/config/client '@{TrustedHosts="laptopPC"}'
+To verify the winrm service, you can type:
+
+#To eanable the changes needed
+Set-NetConnectionProfile -NetworkCategory Private
+
+
+winrm quickconfig
+It will give the current status of the service and if needed, it will configure the WinRM service.
+
+winrm s winrm/config/client '@{TrustedHosts="EranGrossPCNew"}'
+
+#Allow local scripts to be run
+Set-ExecutionPolicy RemoteSigned
+
+#Allow all scripts including from the internet to run
+Set-ExecutionPolicy Unrestricted

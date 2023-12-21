@@ -1,0 +1,1 @@
+start "TEST" cmd.exe /k "powershell D:\scripts\Get-Monitor.ps1 -ComputerName DESKTOP-VQG9T99"
