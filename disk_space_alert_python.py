@@ -12,10 +12,10 @@ smtpServer = "smtp.gmail.com"
 smtpPort = 587
 
 # specify the email addresses and credentials to use for sending email
-emailFrom = "maayan12scomputersalerts@gmail.com"
-emailTo = "maayan12scomputersalerts@gmail.com"
-emailUsername = "maayan12scomputersalerts@gmail.com"
-emailPassword = "alwicjdyyxwxnepz"
+emailFrom = "Look at the email address"
+emailTo = "look at the email address"
+emailUsername = "look at the email address"
+emailPassword = "look at the password"
 
 # use WMIC to get information about the local disks
 disks = os.popen("wmic logicaldisk get deviceid,freespace").read()
